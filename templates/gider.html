@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="w-50 container">
+        <form action="add" method="post">
+            {% csrf_token %}
+            <div class="w-50 container">
+        <h3>Gider</h3>
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-success text-light">TL</span>
+          <input type="text" name="Amount" class="form-control" aria-label="Amount (to the nearest dollar)">
+        </div>
+        <div class="dropdown-center">
+          <div class="input-group">
+              <select class="form-select" name="Category" id="inputGroupSelect04" aria-label="Example select with button addon">
+                <option selected>Kategori seçiniz</option>
+                <option value="Kira">Kira</option>
+                <option value="Faturalar">Faturalar</option>
+                <option value="Yemek">Yemek</option>
+                  <option value="Kişisel Harcama">Kişisel Harcama</option>
+                  <option value="Vergi">Vergi</option>
+                  <option value="Diğer">Diğer</option>
+              </select>
+              <button class="btn btn-success" type="submit">Onayla</button>
+          </div>
+        </div>
+            </div>
+        </form>
+        <table class="border table">
+          <thead>
+            <tr>
+              <th scope="col">Miktar</th>
+              <th scope="col">Kategori</th>
+              <th scope="col">Tarih</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for i in transactions.reverse %}
+              {% if i.Type == "Gider" %}
+                <tr class="table-danger">
+                  <td>{{ i.Amount }}</td>
+                  <td>{{ i.Category }}</td>
+                  <td>{{ i.Date }}</td>
+                </tr>
+              {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}

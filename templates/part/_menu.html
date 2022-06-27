@@ -1,0 +1,22 @@
+<body>
+    <nav class="navbar navbar-expand-xl bg-success navbar-dark">
+        <div class="container-xl">
+        <a class="navbar-brand">Bootcamp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Ana Sayfa</a>
+                  <a class="nav-link text-light" href="{% url 'income' %}">Gelir</a>
+                  <a class="nav-link text-light" href="{% url 'expense' %}">Gider</a>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="ms-auto navbar-nav">
+                    <span class="navbar-text">Kullanıcı Adı : {{user.username}}</span>
+                    <a class="nav-link text-light me-auto" href="/logout">Çıkış</a>
+                   </div>
+                {% endif %}
+        </div>
+        </div>
+    </nav>
